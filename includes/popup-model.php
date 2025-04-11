@@ -173,7 +173,38 @@ function display_homepage_banner() {
 
             // Homepage Banner
             if ($display_position === 'homepage_banner' && is_front_page()) {
-                $output .= '<div class="homepage-banner">🎉 Coupon Code <span class="copy-icon">📎<strong >' . esc_html($title) . '</strong></span> - ' . esc_html($discount_text) . ' (Expires on ' . esc_html($expiry_date) . ')</div>';
+                // $output .= '<div class="homepage-banner">🎉 Coupon Code <span class="copy-icon">📎<strong >' . esc_html($title) . '</strong></span> - ' . esc_html($discount_text) . ' (Expires on ' . esc_html($expiry_date) . ')</div>';
+               $output .= '<div class="header-ticker ticker-' . esc_attr($ticker_position) . '" ';
+                $output .= 'data-animation="' . esc_attr($ticker_animation_type) . '" ';
+                $output .= 'data-speed="' . esc_attr($ticker_speed) . '" ';
+                $output .= 'data-loop="' . ($ticker_loop ? 'true' : 'false') . '" ';
+                $output .= 'style="background-color: ' . esc_attr($bg_color) . '; padding: ' . esc_attr($ticker_padding) . ';">';
+            
+                $output .= '<div class="ticker-text" style="white-space: nowrap; overflow: hidden; color: ' . esc_attr($text_color) . ';">';
+              
+                $output .= '<span style="display: inline-block;' . $padding_left . '">';
+                
+                if (!empty($custom_text)) {
+                    $output .= esc_html($custom_text);
+                } else {
+                    $output .= '🔥 Coupon Code <span class="copy-icon" style="animation: none;">📎<strong>' . esc_html($title) . '</strong></span> - ' . esc_html($discount_text) . ' (Expires on ' . esc_html($expiry_date) . ')';
+                }
+            
+                if (!empty($button_label) && !empty($button_url)) {
+                    $button_style = 'background: ' . esc_attr($button_bg_color) . ';';
+                    $button_style .= ' color: ' . esc_attr($button_text_color) . ';';
+                    $button_style .= ' border: ' . esc_attr($button_border) . ';';
+                    $button_style .= ' border-radius: ' . esc_attr($button_border_radius) . ';';
+                    $button_style .= ' padding: ' . esc_attr($button_padding) . ';';
+                    $button_style .= ' margin-left: ' . esc_attr($button_margin) . ';';
+                    $button_style .= ' margin-top:' . esc_attr($margin_top) . ';';
+                    $button_style .= ' font-size: ' . esc_attr($button_font_size) . ';';
+                    $button_style .= ' text-decoration: none; display: inline-block;';
+            
+                    $output .= ' <a href="' . esc_url($button_url) . '" style="' . $button_style . '">' . esc_html($button_label) . '</a>';
+                }
+            
+                $output .= '</span></div></div>';
             }
 
             // Header Ticker

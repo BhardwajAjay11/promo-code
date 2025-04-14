@@ -121,6 +121,7 @@ function display_homepage_banner() {
         'meta_query' => array(
             array(
                 'key' => 'expiry_date',
+                'value' => date('Y-m-d'),
                 'compare' => '>=',
                 'type' => 'DATE'
             )
